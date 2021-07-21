@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <link rel="stylesheet" href="../../static/login/login_.css">
+    <link rel="preload" id="bgImg" href="../../static/login/images/background11.jpg" as="image">
+    <script>
+        function validateForm(){
+            var username=document.forms["loginForm"]["username"].value;
+            if(username==""){
+                alert("请输入用户名");
+                return false;
+            }
+            var password=document.forms["loginForm"]["password"].value;
+            if(username==""){
+                alert("请输入密码");
+                return false;
+            }
+        }
+
+        function register(){
+            var loginBox=document.forms["loginForm"];
+            loginBox.style.weight=200+"px";
+            loginBox.style.height=200+"px";
+        }
+    </script>
+</head>
+<body>
+    <form id="loginBox" name="loginForm"  onsubmit="return validateForm()" method="POST">
+        <div class="form">
+            <div class="loginInput usernameInput">
+                <input type="text" name="username" placeholder="用户名">
+            </div>
+            <div class="loginInput passwordInput">
+                <input type="password" name="password" placeholder="密码">
+            </div>
+        </div>
+        <div class="button">
+            <button type="submit" name="login">登录</button>
+            <button type="button" name="register" >注册</button>
+        </div>
+    </form>
+</body>
+</html>

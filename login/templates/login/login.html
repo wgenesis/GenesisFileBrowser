@@ -1,57 +1,115 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-    {% load static %}
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=drive-width,initial-scale=1.0">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" type="text/css" href="{% static 'login/login.css' %}">
-    <!-- font-awesome 图标字体 http://www.fontawesome.com.cn/faicons/#web-application -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="screen" rel="stylesheet" type="text/css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <link rel="stylesheet" href="../../static/login/login.css">
+    <link rel="preload" id="bgImg" href="../../static/login/images/background11.jpg" as="image">
+    <script >
+        var loginBoxStatus="login";
 
-        <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
+        function loginForm(){
+            var loginBoxObj=document.getElementById("loginBox");
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
+            var loginBoxStyle=window.getComputedStyle(loginBoxObj,null);
+            var loginBoxPos=parseInt(loginBoxStyle.height);
+
+            var loginButton=document.getElementsByClassName("button");
+            var button_=loginButton[0].getElementsByTagName("button");
+
+            var formObj=document.getElementsByClassName("form");
+            var inputDivList=formObj[0].getElementsByTagName("div");
+
+            if(loginBoxStatus=="register"){
+                loginBoxStatus="login"
+                button_["login"].innerHTML="登录";
+                
+                inputDivList[0].style="display:block";
+                inputDivList[1].style="display:none";
+
+                var id=setInterval(frame,5);
+                function frame(){
+                    if (loginBoxPos<=100){
+                        clearInterval(id);
+                    }
+                    else{
+                        loginBoxPos-=5;
+                        loginBoxObj.style.height=loginBoxPos+"px";
+                    }
+                }
+            }
         }
-      }
-    </style>
 
+        function registerForm(){
+            var loginBoxObj=document.getElementById("loginBox");
 
+            var loginBoxStyle=window.getComputedStyle(loginBoxObj,null);
+            var loginBoxPos=parseInt(loginBoxStyle.height);
+
+            var loginButton=document.getElementsByClassName("button");
+            var button_=loginButton[0].getElementsByTagName("button");
+
+            var formObj=document.getElementsByClassName("form");
+            var inputDivList=formObj[0].getElementsByTagName("div");
+
+            if(loginBoxStatus=="login"){
+                loginBoxStatus="register"
+                button_["login"].innerHTML="返回";
+
+                inputDivList[0].style="display:none";
+                inputDivList[1].style="display:block"
+
+                var id=setInterval(frame,5);
+                function frame(){
+                    if (loginBoxPos>=450){
+                        clearInterval(id);
+                    }
+                    else{
+                        loginBoxPos+=5;
+                        loginBoxObj.style.height=loginBoxPos+"px";
+                    }
+                }
+            }
+            else if(loginBoxStatus=="register"){
+                loginBoxObj.submit()
+            }
+            
+        }
+    </script>
 </head>
-
 <body>
-  <div id="login-box">
-    <!--<h1>登录</h1>-->
-    <div class="form">
-        <div class="item">
-            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-            <input type="text" placeholder="用户名">
+    <form id="loginBox" name="allForm" method="POST">
+        <div class="form">
+            <div class="loginInput">
+                <input class="usernameInput" type="text" name="username" placeholder="用户名">
+                <input class="passwordInput" type="password" name="password" placeholder="密码">
+            </div>
+            <div class="registerInput" style="display:none">
+                <input type="text" id="usernameRegister" name="usernameRegister"> </input>
+                <label for="usernameRegister">用户名:</label><br>
+                <input type="text" id="realName" name="realName" >
+                <label for="realName">真实姓名:</label><br>
+                <input type="text" name="studentID">
+                <label for="studentID">学号:</label><br>
+                <input type="text" name="inviteCode">
+                <label for="inviteCode">邀请码:</label><br>
+                <input type="password" name="passwordRegister">
+                <label for="password">密码:</label><br>
+                <input type="password" name="confirmPassword">
+                <label for="confirmPassword">确认密码:</label><br>
+            </div>            
         </div>
-        <div class="item">
-            <i class="fa fa-key" aria-hidden="true"></i>
-            <input type="text" placeholder="密码">
+        <div class="button">
+            <span class="loginButton">
+                <button type="button" name="login" onclick="loginForm()">登录</button>
+            </span>
+            <span class="registerButton">
+                <button type="button" name="register"  onclick="registerForm()">注册</button>
+            </span>
+            
         </div>
-    </div>
-<!--        <div class="button">-->
-<!--                <button>登录</button>-->
-<!--                <button>注册</button>-->
-<!--        </div>-->
-    <div class="py-3 " >
-        <button type="button" class="btn btn-outline-secondary px-3" style="margin-right: 10px;">登录</button>
-        <button type="button" class="btn btn-outline-secondary px-3" style="margin-left: 10px;">注册</button>
-    </div>
-</div>
+    </form>
 </body>
 </html>

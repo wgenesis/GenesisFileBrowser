@@ -1,72 +1,148 @@
 body{
-    background: url('images/background1.jpg');
-			/*width:100%;*/
-			/*height:100%;*/
-			/*margin:0 auto;*/
-			/*position: relative;*/
-
-            position: absolute;
-            top: 0;
-            overflow: hidden;
-            width: 100%;
-            height: 100%;
-            background-repeat: no-repeat;
-            background-color: #666;
-            background-size: cover
-
+    background-image: url(./images/background/background12.jpg);
+    max-width: 1920px;
+    max-height: 1080px;
+    background-attachment:fixed; 
+    background-size: cover; 
+-webkit-background-size: cover;
+-o-background-size: cover;
+zoom: 1; 
 }
-#login-box{
+
+#loginBox{
+    position: relative;
     width: 30%;
     height: auto;
+    min-width: 300px;
+    max-width: 400px;
+    min-height: 110px;
     margin: 0 auto;
     margin-top: 15%;
     text-align: center;
-    background: #00000060;
-    padding: 20px 50px;
+    background-color: #0000004f;
+    padding: 30px 50px;
+    border-radius: 10px;
 }
-#login-box h1{
-    color: #fff;
-    font-size:30px;
-}
-#login-box .form .item input{
-    margin-top: 15px;
-}
-#login-box .form i{
-    font-size: 18px;
-    color: #fff;
-}
-#login-box .form .item input {
+
+#loginBox .form .loginInput input {
     width: 180px;
-    font-size: 18px;
-    border: 0;
-    border-bottom: 2px solid#fff;
-    padding: 5px 10px;
-    background:#ffffff00;
+    height: 20px;
+    font-size: 16px;
+    border:none;
+    border-bottom: 2px solid rgb(255, 255, 255);
+    padding: 3px 2px;
+    padding-left: 35px;
+    background: #ffffff00;
     color: #fff;
+    margin-bottom: 10px;
+    background-repeat: no-repeat;
+    background-size: 25px 25px;
+    outline: none;
+    
+    background-color: transparent;
 }
-#login-box .button button{
-    margin-top: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
-    width: 100px;
+
+#loginBox .form .loginInput .usernameInput{
+    background-image: url('./images/icons/username.svg') ;
+}
+
+#loginBox .form .loginInput .passwordInput{
+    background-image: url('./images/icons/password.svg') ;
+}
+
+#loginBox .form .registerInput input {
+    width: 60%;
     height: 30px;
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 16px;
+    float: right;
+    margin-right: 10%;
+    border: 2px solid rgba(255, 255, 255, 0.699);
+    border-radius: 5px;
+    padding: 3px 2px;
+    background: #ffffff00;
     color: #fff;
-    background:#6698cb;
-    border: 0;
-    border-radius: 7px;
-    /*box-shadow: 2px 2px 3px #888888;*/
+    margin-bottom: 30px;
+    outline: none;
+    background-color: transparent;
 }
-#login-box .buttons button{
-    margin-top: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
-    width: 100px;
+
+#loginBox .form .registerInput  label{
+    margin-right: 5px;
+    margin-top: 5px;
     height: 30px;
-    font-size: 20px;
-    font-weight: 700;
-    border: 0;
-    border-radius: 7px;
-    /*box-shadow: 2px 2px 3px #888888;*/
+    font-size: 16px;
+    float: right;
+    border-radius: 5px;
+    padding: 3px 2px;
+    background: #ffffff00;
+    color: #fff;
+    margin-bottom: 30px;
+    outline: none;
+    background-color: transparent;
+}
+
+
+#loginBox .form .loginInput input::-webkit-input-placeholder { /* WebKit browsers */
+    color:    rgba(255, 255, 255, 0.76);
+}
+#loginBox .form .loginInput input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    rgba(255, 255, 255, 0.76);
+}
+#loginBox .form .loginInput input::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    rgba(255, 255, 255, 0.76);
+}
+#loginBox .form .loginInput input:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    rgba(255, 255, 255, 0.76);
+}
+
+#loginBox .form .loginInput input:-webkit-autofill , textarea:-webkit-autofill, select:-webkit-autofill {
+	/*自动填入文本颜色*/
+    -webkit-text-fill-color: #ffffff !important;
+    /*自动填入光标颜色*/
+    caret-color: white;
+    /*背景透明；原理：动画由透明变有背景色；参数：背景色属性、动画时间、动画速度曲线、延迟时间*/
+    transition: background-color 0s linear 3600s;
+}
+
+#loginBox .button button{
+    position: relative;
+    margin: 0;
+    /* margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px; */
+    font-size: 15px;
+    color: rgb(255, 255, 255);
+    width: 70px;
+    height: 30px;
+    border: 2px solid rgb(255, 255, 255);
+    background-color: #ffffff00;
+    border-radius: 5px;
+    opacity:0.7;
+    box-shadow:0 5px 20px rgb(255, 255, 255);
+    transition: box-shadow 0.5s;
+    cursor: pointer;
+}
+
+#loginBox .button button:active{
+    color: rgb(77, 76, 76);
+    border: 2px solid rgb(80, 79, 79);
+    background-color: #d8d8d8b7;
+    /* position: relative;
+    left: 2px;
+    top: 2px; */
+}
+
+#loginBox .button button:hover {
+    box-shadow:0 0px 0px rgba(233, 233, 233, 0.5);
+}
+
+#loginBox .button .loginButton button{
+    position: absolute;
+    left: 25%;
+    bottom: 20px;
+}
+#loginBox .button .registerButton button{
+    position: absolute;
+    right: 25%;
+    bottom: 20px;
 }

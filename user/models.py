@@ -3,9 +3,9 @@ import datetime
 # Create your models here.
 
 class Person(models.Model):
-    name=models.CharField(max_length=20)
-    student_id=models.IntegerField(max_length=10,unique=True)
-
+    real_name=models.CharField(max_length=20,default='real_name')
+    student_id=models.IntegerField(unique=True)
+    
     class Meta:
         #定义为抽象基类
         abstract=True
@@ -21,12 +21,13 @@ class Member(Person):
         through='Membership',
         through_fields=('member','group'),
     )
+    username=models.CharField(max_length=15,default='username')
     permission=models.IntegerField()
     password = models.CharField(max_length=256,default='password')
     sign_up_time=models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return self.real_name
 
     class Meta:
         ordering = ["-sign_up_time"]

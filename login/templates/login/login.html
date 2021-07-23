@@ -81,6 +81,7 @@
 </head>
 <body>
     <form id="loginBox" name="allForm" method="POST">
+      {% csrf_token %}
         <div class="form">
             <div class="loginInput">
                 <input class="usernameInput" type="text" name="username" placeholder="用户名">

@@ -4,9 +4,9 @@ body{
     max-height: 1080px;
     background-attachment:fixed; 
     background-size: cover; 
--webkit-background-size: cover;
--o-background-size: cover;
-zoom: 1; 
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    zoom: 1; 
 }
 
 #loginBox{
@@ -24,7 +24,7 @@ zoom: 1;
     border-radius: 10px;
 }
 
-#loginBox .form .loginInput input {
+#loginForm input {
     width: 180px;
     height: 20px;
     font-size: 16px;
@@ -42,15 +42,19 @@ zoom: 1;
     background-color: transparent;
 }
 
-#loginBox .form .loginInput .usernameInput{
+#loginForm .usernameInput{
     background-image: url('./images/icons/username.svg') ;
 }
 
-#loginBox .form .loginInput .passwordInput{
+#loginForm .passwordInput{
     background-image: url('./images/icons/password.svg') ;
 }
 
-#loginBox .form .registerInput input {
+#registerForm{
+    display:none;
+}
+
+#registerForm input {
     width: 60%;
     height: 30px;
     font-size: 16px;
@@ -66,7 +70,7 @@ zoom: 1;
     background-color: transparent;
 }
 
-#loginBox .form .registerInput  label{
+#registerForm  label{
     margin-right: 5px;
     margin-top: 5px;
     height: 30px;
@@ -82,16 +86,16 @@ zoom: 1;
 }
 
 
-#loginBox .form .loginInput input::-webkit-input-placeholder { /* WebKit browsers */
+#loginForm input::-webkit-input-placeholder { /* WebKit browsers */
     color:    rgba(255, 255, 255, 0.76);
 }
-#loginBox .form .loginInput input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+#loginForm input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
     color:    rgba(255, 255, 255, 0.76);
 }
-#loginBox .form .loginInput input::-moz-placeholder { /* Mozilla Firefox 19+ */
+#loginForm input::-moz-placeholder { /* Mozilla Firefox 19+ */
     color:    rgba(255, 255, 255, 0.76);
 }
-#loginBox .form .loginInput input:-ms-input-placeholder { /* Internet Explorer 10+ */
+#loginForm input:-ms-input-placeholder { /* Internet Explorer 10+ */
     color:    rgba(255, 255, 255, 0.76);
 }
 
@@ -139,10 +143,10 @@ zoom: 1;
 #loginBox .button .loginButton button{
     position: absolute;
     left: 25%;
-    bottom: 20px;
+    bottom: 10px;
 }
 #loginBox .button .registerButton button{
     position: absolute;
     right: 25%;
-    bottom: 20px;
+    bottom: 10px;
 }

@@ -10,7 +10,7 @@
     <script >
         var loginBoxStatus="login";
 
-        function loginForm(){
+        function loginFormFun(){
             var loginBoxObj=document.getElementById("loginBox");
 
             var loginBoxStyle=window.getComputedStyle(loginBoxObj,null);
@@ -19,15 +19,15 @@
             var loginButton=document.getElementsByClassName("button");
             var button_=loginButton[0].getElementsByTagName("button");
 
-            var formObj=document.getElementsByClassName("form");
-            var inputDivList=formObj[0].getElementsByTagName("div");
+            var registerFormObj=document.getElementById("registerForm");
+            var loginFormObj=document.getElementById("loginForm");
 
             if(loginBoxStatus=="register"){
-                loginBoxStatus="login"
+                loginBoxStatus="login";
                 button_["login"].innerHTML="登录";
                 
-                inputDivList[0].style="display:block";
-                inputDivList[1].style="display:none";
+                loginFormObj.style="display:block";
+                registerFormObj.style="display:none";
 
                 var id=setInterval(frame,5);
                 function frame(){
@@ -40,9 +40,12 @@
                     }
                 }
             }
+            else if(loginBoxStatus=="login"){
+                loginFormObj.submit();
+            }
         }
 
-        function registerForm(){
+        function registerFormFun(){
             var loginBoxObj=document.getElementById("loginBox");
 
             var loginBoxStyle=window.getComputedStyle(loginBoxObj,null);
@@ -51,15 +54,15 @@
             var loginButton=document.getElementsByClassName("button");
             var button_=loginButton[0].getElementsByTagName("button");
 
-            var formObj=document.getElementsByClassName("form");
-            var inputDivList=formObj[0].getElementsByTagName("div");
+            var registerFormObj=document.getElementById("registerForm");
+            var loginFormObj=document.getElementById("loginForm");
 
             if(loginBoxStatus=="login"){
-                loginBoxStatus="register"
+                loginBoxStatus="register";
                 button_["login"].innerHTML="返回";
 
-                inputDivList[0].style="display:none";
-                inputDivList[1].style="display:block"
+                loginFormObj.style="display:none";
+                registerFormObj.style="display:block";
 
                 var id=setInterval(frame,5);
                 function frame(){
@@ -71,46 +74,46 @@
                         loginBoxObj.style.height=loginBoxPos+"px";
                     }
                 }
+                return false;
             }
             else if(loginBoxStatus=="register"){
-                loginBoxObj.submit()
+                registerFormObj.submit();
             }
             
         }
     </script>
 </head>
 <body>
-    <form id="loginBox" name="allForm" method="POST">
-      {% csrf_token %}
-        <div class="form">
-            <div class="loginInput">
-                <input class="usernameInput" type="text" name="username" placeholder="用户名">
-                <input class="passwordInput" type="password" name="password" placeholder="密码">
-            </div>
-            <div class="registerInput" style="display:none">
-                <input type="text" id="usernameRegister" name="usernameRegister"> </input>
-                <label for="usernameRegister">用户名:</label><br>
-                <input type="text" id="realName" name="realName" >
-                <label for="realName">真实姓名:</label><br>
-                <input type="text" name="studentID">
-                <label for="studentID">学号:</label><br>
-                <input type="text" name="inviteCode">
-                <label for="inviteCode">邀请码:</label><br>
-                <input type="password" name="passwordRegister">
-                <label for="password">密码:</label><br>
-                <input type="password" name="confirmPassword">
-                <label for="confirmPassword">确认密码:</label><br>
-            </div>            
-        </div>
+    <div id="loginBox">
+        <form class="form" id="loginForm" method="POST">
+            {% csrf_token %}
+            <input class="usernameInput" type="text" name="username" placeholder="用户名">
+            <input class="passwordInput" type="password" name="password" placeholder="密码">
+        </form>
+        <form class="form" id="registerForm" method="POST">
+            {% csrf_token %}
+            <input type="text" id="usernameRegister" name="usernameRegister"> </input>
+            <label for="usernameRegister">用户名:</label><br>
+            <input type="text" id="realName" name="realName" >
+            <label for="realName">真实姓名:</label><br>
+            <input type="text" name="studentID">
+            <label for="studentID">学号:</label><br>
+            <input type="text" name="invitationCode">
+            <label for="invitationCode">邀请码:</label><br>
+            <input type="password" name="registerPassword">
+            <label for="password">密码:</label><br>
+            <input type="password" name="confirmRegisterPassword">
+            <label for="confirmPassword">确认密码:</label><br>        
+        </form>
         <div class="button">
             <span class="loginButton">
-                <button type="button" name="login" onclick="loginForm()">登录</button>
+                <button type="button" name="login" onclick="loginFormFun()">登录</button>
             </span>
             <span class="registerButton">
-                <button type="button" name="register"  onclick="registerForm()">注册</button>
+                <button type="button" name="register"  onclick="registerFormFun()">注册</button>
             </span>
-            
         </div>
-    </form>
+
+    </div>
 </body>
 </html>

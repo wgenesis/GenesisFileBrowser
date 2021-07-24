@@ -21,7 +21,7 @@ class Member(Person):
         through='Membership',
         through_fields=('member','group'),
     )
-    username=models.CharField(max_length=15,default='username')
+    username=models.CharField(max_length=15,default='username',unique=True)
     permission=models.IntegerField()
     password = models.CharField(max_length=256,default='password')
     sign_up_time=models.DateTimeField(auto_now_add=True)
@@ -42,8 +42,11 @@ class Membership(models.Model):
 
 class InvitationCode(models.Model):
     #邀请码
-    code=models.CharField(max_length=10)
+    code=models.CharField(max_length=10,unique=True)
     generate_date=models.DateTimeField(auto_now_add=True)
     permission = models.IntegerField()
     owner=models.ForeignKey(Member,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.code
 

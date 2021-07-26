@@ -18,9 +18,12 @@ from django.urls import path
 from login import views
 
 urlpatterns = [
+    path('registerVaild',views.RegisterVaild),
     path('admin/', admin.site.urls),
     path('index/',views.Index),
+    path('login/',views.Login),
+    path('register/',views.Register),
     path('',views.Login),
-    path('register/',views.RegisterVaild),
+    #path('register/',views.RegisterVaild),
     path('logout/',views.Logout),
 ]

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>登录</title>
     <link rel="stylesheet" href="../../static/login/login.css">
-    <link rel="preload" id="bgImg" href="../../static/login/images/background11.jpg" as="image">
+    <!-- <link rel="preload" id="bgImg" href="../../static/login/images/background11.jpg" as="image"> -->
     <script >
         var loginBoxStatus="login";
 
@@ -79,30 +79,72 @@
             else if(loginBoxStatus=="register"){
                 registerFormObj.submit();
             }
-            
         }
+
+        var focusInputList=[];
+        function focusInput(obj){
+            focusInputList.forEach(registerVaild);
+            focusInputList.push(obj);
+        }
+
+        function errorMessage(status,inputTag){
+            if(status=="false"){
+                
+                inputTag.style.cssText="box-shadow:0 5px 20px rgba(255, 0, 0, 0.5);border-color: rgba(255, 0, 0, 0.699);";
+            }
+            else{
+                inputTag.style.cssText="box-shadow:0 0px 0px rgba(255, 255, 255, 0.5);border-color: rgba(255, 255, 255, 0.699);";
+            }
+        }
+
+        function registerVaild(obj){
+            if (obj.value=='') errorMessage(['false'],obj);
+            else{
+                if (obj.name=="usernameRegister" || obj.name=="studentID" || obj.name=="invitationCode"){
+                    console.log(obj.name);
+                    if(obj.name=="studentID" && isNaN(Number(obj.value))) {
+                        errorMessage("false",obj);
+                    }
+                    else{
+                        fetch('http://10.23.21.147:8000/registerVaild?vaildType='+obj.name+'&vaildValue='+obj.value).then(response => response.json())
+                            .then(data => errorMessage(data[0],obj))
+                            .catch(e => console.log("Oops, error", e))
+                    }
+                }
+                else{
+                    if(obj.name=="realName") errorMessage("true",obj);
+                    else if(obj.name=="registerPassword") errorMessage("true",obj);
+                    else if(obj.name=="confirmRegisterPassword"){
+                        registerPasswordObj=document.getElementById("registerPassword");
+                        if(obj.value!=registerPasswordObj.value) errorMessage("false",obj);
+                        else errorMessage("true",obj);
+                    }
+                }
+            }
+        }
+
     </script>
 </head>
 <body>
     <div id="loginBox">
-        <form class="form" id="loginForm" method="POST">
+        <form class="form" id="loginForm" method="POST" action="login/">
             {% csrf_token %}
             <input class="usernameInput" type="text" name="username" placeholder="用户名">
             <input class="passwordInput" type="password" name="password" placeholder="密码">
         </form>
-        <form class="form" id="registerForm" method="POST">
+        <form class="form" id="registerForm" method="POST" action="register/">
             {% csrf_token %}
-            <input type="text" id="usernameRegister" name="usernameRegister"> </input>
+            <input type="text" id="usernameRegister" name="usernameRegister" onfocus="focusInput(this)">
             <label for="usernameRegister">用户名:</label><br>
-            <input type="text" id="realName" name="realName" >
+            <input type="text" id="realName" name="realName" onfocus="focusInput(this)">
             <label for="realName">真实姓名:</label><br>
-            <input type="text" name="studentID">
-            <label for="studentID">学号:</label><br>
-            <input type="text" name="invitationCode">
+            <input type="text" name="studentID" onfocus="focusInput(this)" maxlength=10>
+            <label for="studentID" pattern="">学号:</label><br>
+            <input type="text" name="invitationCode" onfocus="focusInput(this)">
             <label for="invitationCode">邀请码:</label><br>
-            <input type="password" name="registerPassword">
+            <input type="password" id="registerPassword" name="registerPassword" onfocus="focusInput(this)">
             <label for="password">密码:</label><br>
-            <input type="password" name="confirmRegisterPassword">
+            <input type="password" name="confirmRegisterPassword" onfocus="focusInput(this)">
             <label for="confirmPassword">确认密码:</label><br>        
         </form>
         <div class="button">

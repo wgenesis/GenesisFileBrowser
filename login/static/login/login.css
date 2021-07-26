@@ -32,7 +32,6 @@ body{
     border-bottom: 2px solid rgb(255, 255, 255);
     padding: 3px 2px;
     padding-left: 35px;
-    background: #ffffff00;
     color: #fff;
     margin-bottom: 10px;
     background-repeat: no-repeat;
@@ -63,11 +62,14 @@ body{
     border: 2px solid rgba(255, 255, 255, 0.699);
     border-radius: 5px;
     padding: 3px 2px;
-    background: #ffffff00;
     color: #fff;
-    margin-bottom: 30px;
     outline: none;
     background-color: transparent;
+    transition: box-shadow 0.5s;
+}
+
+#registerForm input:hover,#registerForm input:focus {
+    box-shadow:0 5px 20px rgba(255, 255, 255, 0.5);
 }
 
 #registerForm  label{
@@ -76,15 +78,25 @@ body{
     height: 30px;
     font-size: 16px;
     float: right;
-    border-radius: 5px;
     padding: 3px 2px;
-    background: #ffffff00;
     color: #fff;
     margin-bottom: 30px;
     outline: none;
     background-color: transparent;
 }
 
+/* #registerForm p {
+    width: 45%;
+    height: 5px;
+    font-size: 5px;
+    float: right;
+    color: rgb(255, 0, 0);
+    outline: none;
+    background-color: transparent;
+    position: fixed;
+    right: 17%;
+    height: 20px;
+} */
 
 #loginForm input::-webkit-input-placeholder { /* WebKit browsers */
     color:    rgba(255, 255, 255, 0.76);
@@ -99,7 +111,7 @@ body{
     color:    rgba(255, 255, 255, 0.76);
 }
 
-#loginBox .form .loginInput input:-webkit-autofill , textarea:-webkit-autofill, select:-webkit-autofill {
+#loginBox input:-webkit-autofill , textarea:-webkit-autofill, select:-webkit-autofill {
 	/*自动填入文本颜色*/
     -webkit-text-fill-color: #ffffff !important;
     /*自动填入光标颜色*/

@@ -7,23 +7,29 @@
 
   .siderbar{
     display: flex;
-    align-items: center;
-    width: 4rem;
+    /* align-items: center; */
+    padding-left: 0.25rem;
+    width: 3rem;
     height: 100%;
     overflow: hidden;
     flex-direction: column;
     background-color: #c1e0ff;
+    box-shadow: 0px 10px 15px #888888;
     position: fixed;
     top: 0;
     left: 0;
+    transition:width 0.5s;
+}
+
+.siderbar:hover{
+    width: 10rem;
 }
 
 .siderbar_logo{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     margin-top: .75rem;
-
 }
 
 .siderbar_select{
@@ -73,4 +79,53 @@
     fill: currentColor;
     height: 1.5rem;
     width: 1.5rem;
+}
+
+.main{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    flex-direction: column;
+    left: 3rem;
+    top: 0;
+}
+
+.toolbar{
+    display: flex;
+    width: 100%;
+    height: 3rem;
+    flex-direction: row;
+    align-items: center;
+    background-color: #7dbeff;
+    box-shadow: 10px 0px 15px #888888;
+}
+
+.file_tool{
+    display: flex;
+    width: 10rem;
+    height: 100%;
+    flex-direction: column;
+    background-color: #d4eaff;
+    float: left;
+    /* position: fixed; */
+}
+
+.file_broswer{
+    margin-left: 20rem;
+    position: fixed;
+}
+
+.toolbar_button{
+    display: flex;
+    margin-left: 3rem;
+    /* border: 2px solid #0080ff; */
+    cursor: pointer;
+    background-color: #3db8ff;
+    height: 1.5rem;
+    width: 6rem;
+    border-radius: 0.5rem;
+    box-shadow: 2px 2px 2px #1b63ff;
+    color: #1b63ff;
+    
 }

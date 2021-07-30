@@ -17,19 +17,29 @@
         <div class="toolbar">
             <form class="toolbar_button"  action="#">
                 <input title="上传文件" style="opacity:0;filter:alpha(opacity=0);"  type="file" multiple accept="*/*" name="html5uploader">
-                
-                </input>
             </form>
-            <form class="toolbar_button"  action="#">
-                <input title="上传文件夹" style="opacity:0;filter:alpha(opacity=0);" type="file" multiple webkitdirectory accept="*/*" name="html5uploader">
-                asdzxcasd
-                </input>
-            </form>
+            <input type="button"  class="toolbar_button" >
+                <div style="display: flex;justify-content: center;align-items: center;position: absolute; left: 13.25rem;">
+                    <svg t="1627633369842" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3320">
+                        <path d="M853.333333 768H170.666667V341.333333h682.666666v426.666667z m0-512h-341.333333l-85.333333-85.333333H170.666667a85.333333 85.333333 0 0 0-85.333334 85.333333v512a85.333333 85.333333 0 0 0 85.333334 85.333333h682.666666a85.333333 85.333333 0 0 0 85.333334-85.333333V341.333333a85.333333 85.333333 0 0 0-85.333334-85.333333z" p-id="3321"></path>
+                    </svg>
+                    <p>上传文件夹</p> 
+                </div>
+                <form action="#">
+                    <input title="上传文件夹" style="margin-left: 100px; opacity:0;filter:alpha(opacity=0);" type="file" multiple webkitdirectory accept="*/*" name="html5uploader">
+                </form>
+            </input>
+        
         </div>
-        <div>
-            <span class="file_tool">
+        <div style="height: 100%;">
+            <div class="file_tool">
                 sdfsdf
-            </span>
+            </div>
+            <div class="path">
+                <a href="#">全部文件</a>
+                <span>></span>
+                <a href="#">文件夹</a>
+            </div>
             <table class="file_browser">
                 <colgroup>
                     <col width="6%">

@@ -1,3 +1,8 @@
+  *{
+      margin: 0;
+      padding: 0;
+  }
+  
   body{
     display: flex;
     /* align-items: center;
@@ -8,7 +13,7 @@
   .siderbar{
     display: flex;
     /* align-items: center; */
-    padding-left: 0.25rem;
+    padding-left: 0.2rem;
     width: 3rem;
     height: 100%;
     overflow: hidden;
@@ -16,8 +21,6 @@
     background-color: #c1e0ff;
     box-shadow: 0px 10px 15px #888888;
     position: fixed;
-    top: 0;
-    left: 0;
     transition:width 0.5s;
 }
 
@@ -89,6 +92,7 @@
     flex-direction: column;
     left: 3rem;
     top: 0;
+    background-color: rgb(248, 248, 248);
 }
 
 .toolbar{
@@ -97,7 +101,7 @@
     height: 3rem;
     flex-direction: row;
     align-items: center;
-    background-color: #7dbeff;
+    background-color: #9acafa;
     box-shadow: 10px 0px 15px #888888;
 }
 
@@ -106,26 +110,41 @@
     width: 10rem;
     height: 100%;
     flex-direction: column;
-    background-color: #d4eaff;
+    background-color: #bee0ff;
     float: left;
     /* position: fixed; */
 }
 
 .file_broswer{
-    margin-left: 20rem;
-    position: fixed;
+    margin-left: 50rem;
+    /* position: fixed; */
 }
 
 .toolbar_button{
     display: flex;
     margin-left: 3rem;
     /* border: 2px solid #0080ff; */
+    flex-direction: column;
     cursor: pointer;
     background-color: #3db8ff;
     height: 1.5rem;
-    width: 6rem;
+    width: 7rem;
     border-radius: 0.5rem;
     box-shadow: 2px 2px 2px #1b63ff;
     color: #1b63ff;
-    
+    color: rgb(255, 255, 255);
+    font-size: 0.9rem;
+    position: relative;
+    /* overflow: hidden; */
+    border: none;
+}
+
+.toolbar_button:active{
+    box-shadow: 0px 0px 0px;
+    top: 1px;
+    right: 1px;
+}
+
+.flex{
+    display: flex;
 }

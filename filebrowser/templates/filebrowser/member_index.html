@@ -9,26 +9,54 @@
 
     <!-- Custom styles for this template -->
     <link href="../../static/filebrowser/member_index.css" rel="stylesheet">
+    <script>
+        function uploadFileClick(){
+            obj=document.getElementById("uploadFile");
+            obj.click();
+        }
+        function uploadFolderClick(){
+            obj=document.getElementById("uploadFolder");
+            obj.click();
+        }
+        function upload(event){
+            const formData=new FormData();
+            formData.append("file",event.target.files[0]);
+            fetch("/upload",{
+                method:"POST",
+                body:formData,
+            }).then(response=>response.json())
+            .then(data => errorMessage(data[0],obj))
+            .catch(e => console.log("Oops, error", e))
+        }
+    </script>
 
 </head>
 
 <body>
     <div class="main">
         <div class="toolbar">
-            <form class="toolbar_button"  action="#">
-                <input title="上传文件" style="opacity:0;filter:alpha(opacity=0);"  type="file" multiple accept="*/*" name="html5uploader">
-            </form>
-            <input type="button"  class="toolbar_button" >
-                <div style="display: flex;justify-content: center;align-items: center;position: absolute; left: 13.25rem;">
-                    <svg t="1627633369842" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3320">
-                        <path d="M853.333333 768H170.666667V341.333333h682.666666v426.666667z m0-512h-341.333333l-85.333333-85.333333H170.666667a85.333333 85.333333 0 0 0-85.333334 85.333333v512a85.333333 85.333333 0 0 0 85.333334 85.333333h682.666666a85.333333 85.333333 0 0 0 85.333334-85.333333V341.333333a85.333333 85.333333 0 0 0-85.333334-85.333333z" p-id="3321"></path>
+            <div  class="toolbar_button" onclick="uploadFileClick()">
+                <div style="display: flex;justify-content: center;align-items: center;">
+                    <svg t="1627697000657" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4183">
+                        <path d="M859.989333 768H704v-155.989333a35.968 35.968 0 1 0-72.021333 0V768h-147.968a35.968 35.968 0 1 0 0 72.021333h148.010666v147.968a35.968 35.968 0 1 0 71.978667 0v-147.968h155.989333a35.968 35.968 0 1 0 0-72.021333z m15.104-466.218667L597.12 21.333333a77.44 77.44 0 0 0-14.805333-11.52 60.928 60.928 0 0 0-4.394667-2.261333c-0.938667-0.512-1.92-0.896-2.816-1.28A72.362667 72.362667 0 0 0 546.005333 0h-346.026666C160.256 0 128 32.213333 128 72.021333v880C128 991.744 160.213333 1024 200.021333 1024h211.968a35.968 35.968 0 1 0 0-72.021333H199.978667V72.021333H512v240C512 351.786667 544.213333 384 584.021333 384h239.957334v155.989333a35.968 35.968 0 1 0 72.021333 0V352.512c0-19.029333-7.509333-37.205333-20.906667-50.730667z m-291.114666 10.24V110.421333l199.808 201.557334h-199.808z" fill="#e6e6e6" p-id="4184"></path>
+                    </svg>
+                    <p>上传文件</p> 
+                </div>
+                <form action="#">
+                    <input id="uploadFile" title="上传文件" style="display: none;"  type="file" multiple accept="*/*" name="html5uploader" onchange="upload(event)">
+                </form>
+            </div>
+            <div  class="toolbar_button" onclick="uploadFolderClick()">
+                <div style="display: flex;justify-content: center;align-items: center;">
+                    <svg t="1627696816636" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4181" >
+                        <path d="M987.989333 676.096H832v-160a36.437333 36.437333 0 0 0-36.010667-36.906667 36.437333 36.437333 0 0 0-35.968 36.906667v160h-148.053333a36.437333 36.437333 0 0 0-35.968 36.949333c0 20.394667 16.085333 36.906667 36.010667 36.906667h148.010666v151.808c0 20.394667 16.085333 36.906667 35.968 36.906667a36.437333 36.437333 0 0 0 36.010667-36.906667v-151.808h155.989333a36.437333 36.437333 0 0 0 36.010667-36.906667 36.437333 36.437333 0 0 0-36.010667-36.949333z m-35.968-459.52H488.96l-25.002667-79.872A72.064 72.064 0 0 0 395.392 85.333333h-323.413333C32.213333 85.333333 0 118.357333 0 159.146667v705.706666C0 905.6 32.213333 938.666667 72.021333 938.666667h467.968a36.437333 36.437333 0 0 0 36.010667-36.906667 36.437333 36.437333 0 0 0-36.010667-36.949333H71.978667V290.474667h880v151.765333c0 20.437333 16.128 36.949333 36.010666 36.949333a36.437333 36.437333 0 0 0 36.010667-36.949333V290.474667c0-40.832-32.213333-73.856-72.021333-73.856z m-880 0V159.232h323.413334l17.877333 57.429333h-341.333333z" fill="#e6e6e6"  p-id="4182"></path>
                     </svg>
                     <p>上传文件夹</p> 
                 </div>
                 <form action="#">
-                    <input title="上传文件夹" style="margin-left: 100px; opacity:0;filter:alpha(opacity=0);" type="file" multiple webkitdirectory accept="*/*" name="html5uploader">
+                    <input id="uploadFolder" title="上传文件夹" style="display: none;" type="file" multiple webkitdirectory accept="*/*" name="html5uploader">
                 </form>
-            </input>
+            </div>
         
         </div>
         <div style="height: 100%;">

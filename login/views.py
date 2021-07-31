@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from user.models import Member, InvitationCode
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 import json
 
 # Create your views here.
@@ -19,7 +19,7 @@ def Login(request):
         except:
             return render(request, 'login/login.html')
         if user_obj.password == password:
-            return redirect('/index/')
+            return HttpResponseRedirect(reversed('member_index'))
     return render(request, 'login/login.html')
 
 def Register(request):

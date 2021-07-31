@@ -92,7 +92,7 @@
     flex-direction: column;
     left: 3rem;
     top: 0;
-    background-color: rgb(248, 248, 248);
+    /* background-color: rgb(255, 0, 0); */
 }
 
 .toolbar{
@@ -131,7 +131,6 @@
     width: 7rem;
     border-radius: 0.5rem;
     box-shadow: 2px 2px 2px #1b63ff;
-    color: #1b63ff;
     color: rgb(255, 255, 255);
     font-size: 0.9rem;
     position: relative;
@@ -139,10 +138,14 @@
     border: none;
 }
 
-.toolbar_button:active{
+.toolbar_button:hover{
     box-shadow: 0px 0px 0px;
     top: 1px;
-    right: 1px;
+    left: 1px;
+}
+
+.icon{
+    width: 1.2rem;
 }
 
 .flex{

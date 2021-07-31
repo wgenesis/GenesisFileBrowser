@@ -15,15 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from login import views
+import login.views as login_views
+import filebrowser.views as filebrowser_views
 
 urlpatterns = [
-    path('registerVaild',views.RegisterVaild),
+    path('registerVaild',login_views.RegisterVaild),
     path('admin/', admin.site.urls),
-    path('index/',views.Index),
-    path('login/',views.Login),
-    path('register/',views.Register),
-    path('',views.Login),
+    path('index/',login_views.Index),
+    path('login/',login_views.Login),
+    path('register/',login_views.Register),
+    path('upload/',filebrowser_views.Upload),
+    path('member_index/',filebrowser_views.member_index,name='menber_index'),
+    path('',login_views.Login),
     #path('register/',views.RegisterVaild),
-    path('logout/',views.Logout),
+    path('logout/',login_views.Logout),
 ]

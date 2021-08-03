@@ -106,7 +106,7 @@
                         errorMessage("false",obj);
                     }
                     else{
-                        fetch('http://10.23.21.147:8000/registerVaild?vaildType='+obj.name+'&vaildValue='+obj.value).then(response => response.json())
+                        fetch('/login/registerVaild?vaildType='+obj.name+'&vaildValue='+obj.value).then(response => response.json())
                             .then(data => errorMessage(data[0],obj))
                             .catch(e => console.log("Oops, error", e))
                     }
@@ -127,12 +127,12 @@
 </head>
 <body>
     <div id="loginBox">
-        <form class="form" id="loginForm" method="POST" action="login/">
+        <form class="form" id="loginForm" method="POST" action="/login/login/">
             {% csrf_token %}
             <input class="usernameInput" type="text" name="username" placeholder="用户名">
             <input class="passwordInput" type="password" name="password" placeholder="密码">
         </form>
-        <form class="form" id="registerForm" method="POST" action="register/">
+        <form class="form" id="registerForm" method="POST" action="/login/register/">
             {% csrf_token %}
             <input type="text" id="usernameRegister" name="usernameRegister" onfocus="focusInput(this)">
             <label for="usernameRegister">用户名:</label><br>

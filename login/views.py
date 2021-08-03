@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from user.models import Member, InvitationCode
 from django.http import HttpResponse,HttpResponseRedirect
+from django.urls import reverse
 import json
 
 # Create your views here.
@@ -19,7 +20,9 @@ def Login(request):
         except:
             return render(request, 'login/login.html')
         if user_obj.password == password:
-            return HttpResponseRedirect(reversed('member_index'))
+            #反向解析至名称为“member_index”的URL，并传入username作为参数
+            url=reverse('filebrowser:index',args=[username])
+            return HttpResponseRedirect(url)
     return render(request, 'login/login.html')
 
 def Register(request):

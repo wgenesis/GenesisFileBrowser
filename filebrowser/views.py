@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from user.models import Member, InvitationCode
+from django.views.generic import TemplateView
 from django.http import HttpResponse
 import json
 
@@ -13,7 +14,9 @@ def Upload(request):
         with open(filename,'wb') as f:
             for line in obj.chunks():
                 f.write(line)
-    return HttpResponse(json.dumps(['true']))
+    return  HttpResponse(json.dumps(['true']))
 
-def member_index(request):
+class Index(TemplateView):
+
+def index(request,username):
     return render(request,'filebrowser/member_index.html')

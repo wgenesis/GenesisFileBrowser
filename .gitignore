@@ -76,6 +76,7 @@ target/
 
 # Jupyter Notebook
 .ipynb_checkpoints
+.ipynb
 
 # IPython
 profile_default/
@@ -133,3 +134,5 @@ dmypy.json
 
 #django
 GenesisFileBrowser/settings.py
+
+

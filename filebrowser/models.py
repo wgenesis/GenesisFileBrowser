@@ -1,14 +1,18 @@
 from django.db import models
+from django.utils import timezone
 from user.models import Member
 # Create your models here.
 
+class Organization(models.Model):
+    Organization_name = models.CharField(max_length=20, unique=True)
+
+    def __str__(self):
+        return self.Organization_name
+
 class Folder(models.Model):
     folder_name=models.CharField(max_length=128)
-    members=models.ManyToManyField(
-        Member,
-        through=('FolderShip'),
-        through_fields=('folder','member'),
-    )
+    organization=models.ForeignKey(Organization,on_delete=models.CASCADE,null=True)
+    parent_folder=models.ForeignKey('self',on_delete=models.CASCADE,null=True)
 
     def __str__(self):
         return self.folder_name
@@ -29,12 +33,14 @@ class File(models.Model):
         return self.file_name
 
 class Fileship(models.Model):
-    folder=models.ForeignKey(Folder,on_delete=models.CASCADE)
     file=models.ForeignKey(File,on_delete=models.CASCADE)
-
-class FolderShip(models.Model):
-    member=models.ForeignKey(Member,on_delete=models.CASCADE)
     folder=models.ForeignKey(Folder,on_delete=models.CASCADE)
-    upload_time=models.DateTimeField(auto_now_add=True)
+    upload_time = models.DateTimeField(auto_now_add=True)
+
+# class OrganizationShip(models.Model):
+#     folder = models.ForeignKey(Folder, on_delete=models.CASCADE)
+#     organization=models.ForeignKey(Organization,on_delete=models.CASCADE)
+
+
 
 

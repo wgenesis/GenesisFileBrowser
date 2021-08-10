@@ -112,6 +112,7 @@
     flex-direction: column;
     background-color: #bee0ff;
     float: left;
+    align-items: center;
     /* position: fixed; */
 }
 
@@ -150,4 +151,23 @@
 
 .flex{
     display: flex;
+}
+
+.organization{
+    display: flex;
+    margin-top: 1rem;
+    width: 8rem;
+    height: 2rem;
+    background-color: rgb(98, 160, 252);
+    font-weight: 600;
+    font-size: 0.2rem;
+    color: rgba(255, 255, 255, 0.856);
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.icon-arrow-down{
+    content: "\E6D3";
 }

@@ -14,19 +14,34 @@
             obj=document.getElementById("uploadFile");
             obj.click();
         }
+
         function uploadFolderClick(){
             obj=document.getElementById("uploadFolder");
             obj.click();
         }
+
         function upload(event){
-            const formData=new FormData();
+            formData=new FormData(document.getElementById("uploadFileForm"));
+            
             formData.append("file",event.target.files[0]);
-            fetch("/upload",{
+            fetch("/filebrowser/upload/",{
                 method:"POST",
                 body:formData,
             }).then(response=>response.json())
-            .then(data => errorMessage(data[0],obj))
             .catch(e => console.log("Oops, error", e))
+        }
+
+        function getCookie(name){
+            var cookieStr=document.cookie;
+            var cookieList=cookieStr.split(";");
+            console.log(cookieList)
+            for (var i=0;i<cookieList.length;i++){
+                var cookieVal=cookieList[i].split("=");
+                if(cookieVal[0]==name){
+                    return cookieVal[1];
+                }
+            }
+            return "";
         }
     </script>
 
@@ -42,7 +57,8 @@
                     </svg>
                     <p>上传文件</p> 
                 </div>
-                <form action="#">
+                <form action="#" id="uploadFileForm" name="uploadFileForm">
+                    {% csrf_token %}
                     <input id="uploadFile" title="上传文件" style="display: none;"  type="file" multiple accept="*/*" name="html5uploader" onchange="upload(event)">
                 </form>
             </div>
@@ -53,7 +69,8 @@
                     </svg>
                     <p>上传文件夹</p> 
                 </div>
-                <form action="#">
+                <form action="#" id="uploadFolderForm" name="uploadFolderForm">
+                    {% csrf_token %}
                     <input id="uploadFolder" title="上传文件夹" style="display: none;" type="file" multiple webkitdirectory accept="*/*" name="html5uploader">
                 </form>
             </div>
@@ -61,7 +78,10 @@
         </div>
         <div style="height: 100%;">
             <div class="file_tool">
-                sdfsdf
+                <i class="icon-arrow-down"></i>
+                <span class="organization">
+                    我的组织
+                </span>
             </div>
             <div class="path">
                 <a href="#">全部文件</a>

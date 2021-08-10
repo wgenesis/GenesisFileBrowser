@@ -6,17 +6,16 @@ from django.http import HttpResponse
 import json
 
 def Upload(request):
-    print("前端数据：",request.POST)
-    print("file",request.FILES)
     for item in request.FILES:
         obj=request.FILES.get(item)
         filename=obj.name
-        with open(filename,'wb') as f:
+        with open('FILES'+filename,'wb') as f:
             for line in obj.chunks():
                 f.write(line)
     return  HttpResponse(json.dumps(['true']))
 
 class Index(TemplateView):
+    pass
 
 def index(request,username):
     return render(request,'filebrowser/member_index.html')

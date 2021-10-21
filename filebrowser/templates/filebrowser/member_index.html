@@ -74,7 +74,6 @@
                     <input id="uploadFolder" title="上传文件夹" style="display: none;" type="file" multiple webkitdirectory accept="*/*" name="html5uploader">
                 </form>
             </div>
-        
         </div>
         <div style="height: 100%;">
             <div class="file_tool">
@@ -95,10 +94,16 @@
                     <col width="22%">
                     <col width="23%"> 
                 </colgroup>
-                <tbody>
-                    <tr>
-                        <th>
-                            check
+                <thead>
+                    <tr class="table_header-row">
+                        <th class="table_header-select">
+                            <label role="checkbox" class="u-checkbox">
+                                <span aria-checked="mixed" class="u-checkbox_input">
+                                    <span class="u-checkbox_inner">
+                                    </span>
+                                    <input type="checkbox" aria-hidden="true" class="u-checkbox_original" value>
+                                </span>
+                            </label>
                         </th>
                         <th>
                             文件名
@@ -117,7 +122,7 @@
                             </svg>
                         </td>
                     </tr>
-                </tbody>
+                </thead>
             </table>
         </div>
     </div>
